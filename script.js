@@ -1,6 +1,42 @@
 // Assignment code here
 
 
+
+
+// DOM Values
+var password = document.getElementById("password");
+var length = document.getElementById("length");
+var uppercase = document.getElementById("uppercase");
+var lowercase = document.getElementById("lowercase");
+var numbers = document.getElementById("numbers");
+var symbols = document.getElementById("symbols");
+var generate = document.getElementById("generate");
+
+
+
+
+// Event Listeners
+generate.addEventListener("click", () => {
+  
+})
+
+
+
+
+// Functions
+function generatePassword() {
+
+}
+
+
+
+
+
+
+
+
+
+
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
