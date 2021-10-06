@@ -18,43 +18,17 @@ var generate = document.getElementById("generate");
 // Event Listeners
 generate.addEventListener("click", () => {
 
-  var characterAmount = length.value;
+  const characterAmount = +length.value;
   console.log(characterAmount);
 
-  if (uppercase.checked === true) {
-    console.log("checked");
-  }
-
-  if (uppercase.checked === false) {
-    console.log("unchecked");
-  }
-
-  if (lowercase.checked === true) {
-    console.log("checked");
-  }
-
-  if (lowercase.checked === false) {
-    console.log("unchecked");
-  }
-
-  if (numbers.checked === true) {
-    console.log("checked");
-  }
-
-  if (numbers.checked === false) {
-    console.log("unchecked");
-  }
-
-  if (symbols.checked === true) {
-    console.log("checked");
-  }
-
-  if (symbols.checked === false) {
-    console.log("unchecked");
-  }
-
-})
-
+  const hasUpper = uppercase.checked;
+  // Do this for each variable
+  password.innerText = generatePassword(
+    characterAmount,
+    hasUpper,
+    // Do this for each variable
+  )
+});
 
 
 
