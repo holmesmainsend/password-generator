@@ -1,8 +1,3 @@
-// Assignment code here
-
-
-
-
 // DOM Values
 var password = document.getElementById("password");
 var length = document.getElementById("length");
@@ -19,16 +14,21 @@ var generate = document.getElementById("generate");
 generate.addEventListener("click", () => {
 
   const characterAmount = +length.value;
-  console.log(characterAmount);
-
   const hasUpper = uppercase.checked;
-  // Do this for each variable
+  const hasLower = lowercase.checked;
+  const hasNumbers = numbers.checked;
+  const hasSymbols = symbols.checked;
+
+
   password.innerText = generatePassword(
     characterAmount,
     hasUpper,
-    // Do this for each variable
+    hasLower,
+    hasNumbers,
+    hasSymbols,
   )
 });
+
 
 
 
