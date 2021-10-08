@@ -7,6 +7,13 @@ var numbers = document.getElementById("numbers");
 var symbols = document.getElementById("symbols");
 var generate = document.getElementById("generate");
 
+const randomLooper = {
+  upper: RandomUpper,
+  lower: RandomLower,
+  numbers: RandomNumbers,
+  symbols: RandomSymbols,
+}
+
 
 
 
@@ -26,7 +33,7 @@ generate.addEventListener("click", () => {
     hasLower,
     hasNumbers,
     hasSymbols,
-  )
+  );
 });
 
 
@@ -49,7 +56,27 @@ function RandomSymbols() {
   return String.fromCharCode(Math.floor(Math.random() * 15) + 33);
 }
 
-function generatePassword() {
+
+
+function generatePassword(length, upper, lower, numbers, symbols) {
+  let passwordFormation = "";
+  const settingsCount = upper + lower + numbers + symbols;
+  const settingsArray = [{upper}, {lower}, {numbers}, {symbols}].filter(item => Object.values(item)[0]);
+
+  if (settingsCount === 0) {
+    return "";
+  }
+
+  for (let i = 0; i<length; i+=settingsCount) {
+    settingsArray.forEach (type => {
+      const forLooper = Object.keys(type)[0];
+      passwordFormation += randomLooper[forLooper](); 
+    });
+  }
+
+  const finalPassword = passwordFormation.slice(0, length);
+  return finalPassword;
+
 }
 
 
@@ -69,7 +96,7 @@ function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
+  passwordText.value = finalPassword;
 
 }
 
