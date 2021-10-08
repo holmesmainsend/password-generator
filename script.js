@@ -33,8 +33,23 @@ generate.addEventListener("click", () => {
 
 
 // Functions
-function generatePassword() {
+function RandomUpper () {
+  return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+}
 
+function RandomLower () {
+  return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+}
+
+function RandomNumbers () {
+  return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
+}
+
+function RandomSymbols() {
+  return String.fromCharCode(Math.floor(Math.random() * 15) + 33);
+}
+
+function generatePassword() {
 }
 
 
