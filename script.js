@@ -13,25 +13,6 @@ const randomLooper = {
   numbers: RandomNumbers,
   symbols: RandomSymbols,
 };
-
-// Event Listeners
-// generate.addEventListener("click", () => {
-
-//   const characterAmount = +length.value;
-//   const hasUpper = uppercase.checked;
-//   const hasLower = lowercase.checked;
-//   const hasNumbers = numbers.checked;
-//   const hasSymbols = symbols.checked;
-
-//   password.innerText = generatePassword(
-//     characterAmount,
-//     hasUpper,
-//     hasLower,
-//     hasNumbers,
-//     hasSymbols,
-//   );
-// });
-
 // Functions
 function RandomUpper() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
