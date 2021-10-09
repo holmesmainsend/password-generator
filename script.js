@@ -3,8 +3,8 @@ var password = document.getElementById("password");
 var length = document.getElementById("length");
 var uppercase = document.getElementById("uppercase");
 var lowercase = document.getElementById("lowercase");
-var numbers = document.getElementById("numbers");
-var symbols = document.getElementById("symbols");
+var numbersBox = document.getElementById("numbers");
+var symbolsBox = document.getElementById("symbols");
 var generate = document.getElementById("generate");
 
 const randomLooper = {
@@ -12,43 +12,36 @@ const randomLooper = {
   lower: RandomLower,
   numbers: RandomNumbers,
   symbols: RandomSymbols,
-}
-
-
-
+};
 
 // Event Listeners
-generate.addEventListener("click", () => {
+// generate.addEventListener("click", () => {
 
-  const characterAmount = +length.value;
-  const hasUpper = uppercase.checked;
-  const hasLower = lowercase.checked;
-  const hasNumbers = numbers.checked;
-  const hasSymbols = symbols.checked;
+//   const characterAmount = +length.value;
+//   const hasUpper = uppercase.checked;
+//   const hasLower = lowercase.checked;
+//   const hasNumbers = numbers.checked;
+//   const hasSymbols = symbols.checked;
 
-
-  password.innerText = generatePassword(
-    characterAmount,
-    hasUpper,
-    hasLower,
-    hasNumbers,
-    hasSymbols,
-  );
-});
-
-
-
+//   password.innerText = generatePassword(
+//     characterAmount,
+//     hasUpper,
+//     hasLower,
+//     hasNumbers,
+//     hasSymbols,
+//   );
+// });
 
 // Functions
-function RandomUpper () {
+function RandomUpper() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
 }
 
-function RandomLower () {
+function RandomLower() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
 }
 
-function RandomNumbers () {
+function RandomNumbers() {
   return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
 }
 
@@ -56,48 +49,58 @@ function RandomSymbols() {
   return String.fromCharCode(Math.floor(Math.random() * 15) + 33);
 }
 
+function checkCharLength(characterAmount) {
+  if (characterAmount < 8 || characterAmount > 128) {
+    return false;
+  } else {
+    return true;
+  }
+}
 
+function generatePassword({ upper, lower, numbers, symbols }) {
+  const characterAmount = +length.value;
+  const hasUpper = uppercase.checked;
 
-function generatePassword(length, upper, lower, numbers, symbols) {
+  const hasLower = lowercase.checked;
+  const hasNumbers = numbersBox.checked;
+  const hasSymbols = symbolsBox.checked;
   let passwordFormation = "";
-  const settingsCount = upper + lower + numbers + symbols;
-  const settingsArray = [{upper}, {lower}, {numbers}, {symbols}].filter(item => Object.values(item)[0]);
+  const settingsCount = hasUpper + hasLower + hasNumbers + hasSymbols;
+
+  const settingsArray = [{ upper }, { lower }, { numbers }, { symbols }].filter(
+    (item) => Object.values(item)[0]
+  );
+
+  if (checkCharLength(characterAmount)) {
+  } else {
+    return "Password length must be between 8-128 characters";
+  }
 
   if (settingsCount === 0) {
     return "";
   }
 
-  for (let i = 0; i<length; i+=settingsCount) {
-    settingsArray.forEach (type => {
+  for (i = 0; i < characterAmount; i++) {
+    settingsArray.forEach((type) => {
       const forLooper = Object.keys(type)[0];
-      passwordFormation += randomLooper[forLooper](); 
+      passwordFormation += randomLooper[forLooper]();
     });
   }
 
-  const finalPassword = passwordFormation.slice(0, length);
+  const finalPassword = passwordFormation.slice(0, characterAmount);
+
   return finalPassword;
-
 }
-
-
-
-
-
-
-
-
-
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var password = generatePassword(randomLooper);
   var passwordText = document.querySelector("#password");
 
-  passwordText.value = finalPassword;
-
+  passwordText.value = password;
 }
 
 // Add event listener to generate button
